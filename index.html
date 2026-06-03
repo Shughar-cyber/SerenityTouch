@@ -594,6 +594,29 @@
     }
     .footer-disclaimer { font-size: 0.72rem; color: rgba(201,180,154,0.5); max-width: 600px; margin-top: 1rem; line-height: 1.6; }
 
+    section { scroll-margin-top: 6rem; }
+    .hero-btns { flex-wrap: wrap; justify-content: flex-start; }
+    .hero-btns .btn { min-width: 180px; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      right: 1.5rem;
+      background: rgba(247,243,238,0.98);
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 18px 48px rgba(59,44,34,0.18);
+      width: min(260px, 90vw);
+      z-index: 10;
+    }
+    .nav-links.open a {
+      padding: 0.75rem 0;
+      color: var(--deep);
+      font-weight: 600;
+    }
+    .nav-links.open li + li { margin-top: 0.5rem; }
+
     /* ── ANIMATIONS ─────────────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -623,6 +646,9 @@
       .pricing-extras { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .about-img-wrap { padding-bottom: 3rem; padding-right: 3rem; }
+      .hero { min-height: auto; padding-block: 3rem; }
+      .hero-content { padding-top: 2rem; }
+      .hero p { max-width: 100%; }
     }
     @media (max-width: 640px) {
       .grid-3, .grid-4 { grid-template-columns: 1fr; }
@@ -632,6 +658,21 @@
       .footer-inner { grid-template-columns: 1fr; }
       .pillars { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
+      .nav-inner { flex-wrap: wrap; gap: 0.75rem; }
+      .nav-cta { width: 100%; justify-content: center; }
+      .hero-btns { flex-direction: column; align-items: stretch; }
+      .hero-btns .btn { width: 100%; }
+      .hero p { font-size: 1rem; }
+      .service-card, .price-card, .testimonial, .contact-card { padding: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      body { font-size: 0.95rem; }
+      .section { padding-block: clamp(2rem, 6vw, 3.5rem); }
+      .hero h1 { font-size: clamp(2.5rem, 9vw, 4.2rem); }
+      .footer-bottom { flex-direction: column; align-items: center; gap: 0.75rem; }
+      .nav-cta { padding: 0.9em 1rem; }
+      .about-img-wrap { padding-right: 1rem; }
+      .hero-scroll { bottom: 1rem; }
     }
   </style>
 </head>
@@ -991,7 +1032,7 @@
     <div class="grid-2">
       <div class="why-visual reveal">
         <img
-          src="https://images.unsplash.com/photo-1527515637462-cff94abb904f?w=700&auto=format&fit=crop&q=80"
+          src="https://c4.wallpaperflare.com/wallpaper/56/253/135/flowers-candles-flowers-spa-wallpaper-preview.jpg"
           alt="Serene massage environment" class="why-img"
         />
         <div class="why-overlay"></div>
@@ -1189,9 +1230,9 @@
         </div>
         <div style="margin-top:1.5rem">
           <p style="font-size:0.85rem;color:var(--sand);margin-bottom:0.5rem">📞 Prefer to call?</p>
-          <a href="tel:+15551234567" style="color:var(--gold);font-size:1.1rem;font-family:'Cormorant Garamond',serif;">+1 (555) 123-4567</a>
+          <a href="tel:+16232218620" style="color:var(--gold);font-size:1.1rem;font-family:'Cormorant Garamond',serif;">+1 (623) 221-8620</a>
           <p style="font-size:0.85rem;color:var(--sand);margin:0.75rem 0 0.5rem">💬 WhatsApp us:</p>
-          <a href="https://wa.me/15551234567" style="color:var(--gold);font-size:1.1rem;font-family:'Cormorant Garamond',serif;">+1 (555) 123-4567</a>
+          <a href="https://wa.me/16232218620" style="color:var(--gold);font-size:1.1rem;font-family:'Cormorant Garamond',serif;">+1 (623) 221-8620</a>
         </div>
       </div>
       <div class="reveal">
@@ -1392,8 +1433,15 @@
 <script>
   // Sticky nav
   const nav = document.getElementById('mainNav');
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  hamburger?.addEventListener('click', () => {
+    navLinks?.classList.toggle('open');
   });
 
   // Reveal on scroll
@@ -1427,6 +1475,9 @@
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (navLinks?.classList.contains('open')) {
+        navLinks.classList.remove('open');
+      }
     });
   });
 </script>
