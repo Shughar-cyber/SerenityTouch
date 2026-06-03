@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serenity Touch | Professional Massage Therapy & Wellness</title>
+  <meta name="description" content="Experience premium massage therapy — Swedish, Deep Tissue, Sports, Cupping, Hot Stone, Reflexology & more. Mobile service available. Book your session today." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────── */
+    :root {
+      --cream:    #F7F3EE;
+      --warm:     #EDE5D8;
+      --sand:     #C9B49A;
+      --umber:    #8C6A4F;
+      --deep:     #3B2C22;
+      --sage:     #7D9180;
+      --gold:     #B8965A;
+      --white:    #FFFFFF;
+      --text:     #3B2C22;
+      --muted:    #7A6E66;
+      --r: 0.9rem;
+      --gap: clamp(3rem, 8vw, 7rem);
+    }
+
+    /* ── RESET ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.75;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── TYPOGRAPHY ─────────────────────────────── */
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; line-height: 1.2; }
+    h1 { font-size: clamp(3rem, 7vw, 6rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    h3 { font-size: clamp(1.3rem, 2vw, 1.8rem); }
+    .eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── LAYOUT HELPERS ─────────────────────────── */
+    .container { width: min(1160px, 92vw); margin-inline: auto; }
+    .section { padding-block: var(--gap); }
+    .section--dark { background: var(--deep); color: var(--cream); }
+    .section--warm { background: var(--warm); }
+    .section--sage { background: var(--sage); color: var(--white); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+    /* ── BUTTONS ────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      padding: 0.9em 2.4em;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--umber); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,106,79,0.3); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-outline:hover { background: var(--gold); color: var(--white); }
+    .btn-light {
+      background: var(--cream);
+      color: var(--deep);
+    }
+    .btn-light:hover { background: var(--warm); }
+
+    /* ── DIVIDER ────────────────────────────────── */
+    .divider {
+      width: 60px; height: 1px;
+      background: var(--gold);
+      margin: 1.5rem auto;
+    }
+    .divider--left { margin-left: 0; }
+
+    /* ── NAV ────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 0;
+      transition: all 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(247,243,238,0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 20px rgba(59,44,34,0.08);
+      padding: 0.8rem 0;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--white);
+      transition: color 0.4s;
+    }
+    nav.scrolled .nav-logo { color: var(--deep); }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.6em 1.6em;
+      background: var(--gold);
+      color: var(--white);
+      transition: all 0.3s;
+    }
+    .nav-cta:hover { background: var(--umber); }
+    .hamburger { display: none; }
+
+    /* ── HERO ───────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(160deg, rgba(59,44,34,0.82) 0%, rgba(59,44,34,0.55) 60%, rgba(125,145,128,0.4) 100%),
+        url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1800&auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      padding-top: 5rem;
+      animation: fadeUp 1s ease both;
+    }
+    .hero-tag {
+      display: inline-flex; gap: 1.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 1.5rem;
+    }
+    .hero-tag span { opacity: 0.5; }
+    .hero h1 { color: var(--white); margin-bottom: 1.5rem; }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.1rem;
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      animation: pulse 2s infinite;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 40px; background: rgba(255,255,255,0.3);
+      animation: lineGrow 2s infinite;
+    }
+    .hero-badge {
+      position: absolute; right: 5vw; bottom: 12%;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: rgba(184,150,90,0.15);
+      border: 1px solid rgba(184,150,90,0.4);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+    }
+    .hero-badge strong { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; display: block; }
+
+    /* ── STATS BAR ──────────────────────────────── */
+    .stats-bar {
+      background: var(--deep);
+      padding: 2rem 0;
+    }
+    .stats-inner {
+      display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sand);
+    }
+
+    /* ── ABOUT ──────────────────────────────────── */
+    .about-visual {
+      position: relative;
+    }
+    .about-img-wrap {
+      position: relative;
+      padding-bottom: 4rem; padding-right: 4rem;
+    }
+    .about-img-main {
+      width: 100%; aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+    .about-img-accent {
+      position: absolute; bottom: 0; right: 0;
+      width: 55%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 6px solid var(--cream);
+    }
+    .about-leaf {
+      position: absolute; top: -1.5rem; left: -1.5rem;
+      width: 80px; height: 80px;
+      background: var(--sage);
+      opacity: 0.3;
+      border-radius: 50% 10% 50% 10%;
+    }
+    .about-text h2 { margin-bottom: 1rem; }
+    .about-text p { color: var(--muted); margin-bottom: 1.25rem; }
+    .pillars {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;
+    }
+    .pillar {
+      padding: 1.25rem;
+      background: var(--warm);
+      border-left: 3px solid var(--gold);
+    }
+    .pillar h4 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .pillar p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+    /* ── SERVICES ───────────────────────────────── */
+    .services-header { text-align: center; margin-bottom: 3.5rem; }
+    .services-header h2 { margin-bottom: 0.5rem; }
+    .services-header p { color: var(--muted); max-width: 520px; margin-inline: auto; }
+    .service-card {
+      background: var(--cream);
+      padding: 2rem;
+      border: 1px solid rgba(139,106,79,0.12);
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .section--dark .service-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height 0.4s ease;
+    }
+    .service-card:hover::before { height: 100%; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(59,44,34,0.12); }
+    .service-icon {
+      font-size: 2rem; margin-bottom: 1rem; display: block;
+    }
+    .service-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .service-card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
+    .section--dark .service-card p { color: var(--sand); }
+    .service-benefits {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+    .benefit-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3em 0.8em;
+      background: rgba(184,150,90,0.12);
+      color: var(--gold);
+      border-radius: 2px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ── PRICING ────────────────────────────────── */
+    .pricing-header { text-align: center; margin-bottom: 3rem; }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .price-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border: 1px solid rgba(139,106,79,0.2);
+      position: relative;
+      transition: all 0.3s;
+    }
+    .price-card.featured {
+      background: var(--deep);
+      border-color: var(--gold);
+      color: var(--cream);
+    }
+    .price-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.6rem; letter-spacing: 0.2em; font-weight: 600;
+      padding: 0.3em 1em;
+    }
+    .price-card:hover { box-shadow: 0 8px 32px rgba(59,44,34,0.1); transform: translateY(-4px); }
+    .price-duration {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .price-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 300;
+      line-height: 1;
+    }
+    .price-from { font-size: 0.8rem; color: var(--muted); }
+    .price-card.featured .price-from { color: var(--sand); }
+    .price-note {
+      font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem;
+    }
+    .pricing-extras {
+      background: var(--warm);
+      padding: 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .extra { display: flex; gap: 1rem; align-items: flex-start; }
+    .extra-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .extra h4 { font-size: 1rem; margin-bottom: 0.2rem; }
+    .extra p { font-size: 0.82rem; color: var(--muted); margin: 0; }
+
+    /* ── TRUST / CREDENTIALS ────────────────────── */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .trust-item { text-align: center; }
+    .trust-icon-wrap {
+      width: 72px; height: 72px; margin: 0 auto 1.25rem;
+      border-radius: 50%;
+      background: rgba(184,150,90,0.12);
+      border: 1px solid rgba(184,150,90,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      transition: all 0.3s;
+    }
+    .trust-item:hover .trust-icon-wrap {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .trust-item h4 { margin-bottom: 0.4rem; }
+    .trust-item p { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── WHY CHOOSE ─────────────────────────────── */
+    .why-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .why-item {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      padding: 1.25rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s;
+    }
+    .why-item:hover {
+      background: rgba(184,150,90,0.1);
+      border-color: rgba(184,150,90,0.3);
+    }
+    .why-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 300;
+      color: var(--gold); opacity: 0.6;
+      line-height: 1; flex-shrink: 0;
+      width: 2.5rem;
+    }
+    .why-item h4 { margin-bottom: 0.2rem; color: var(--cream); }
+    .why-item p { font-size: 0.85rem; color: var(--sand); margin: 0; }
+    .why-visual {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-img {
+      width: 100%; aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+    .why-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(59,44,34,0.3), transparent);
+    }
+
+    /* ── TESTIMONIALS ───────────────────────────── */
+    .testimonials-header { text-align: center; margin-bottom: 3rem; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial {
+      background: var(--white);
+      padding: 2rem;
+      border-bottom: 3px solid var(--gold);
+      transition: all 0.3s;
+    }
+    .testimonial:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(59,44,34,0.1); }
+    .stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+    .testimonial blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--deep);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+    .author-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--sand);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--white);
+      flex-shrink: 0;
+    }
+    .author-name { font-weight: 500; font-size: 0.9rem; }
+    .author-detail { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── FAQ ────────────────────────────────────── */
+    .faq-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(139,106,79,0.15); }
+    .faq-item {
+      background: var(--cream);
+      padding: 2rem;
+    }
+    .faq-item h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      color: var(--deep);
+    }
+    .faq-item p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+    /* ── BOOKING ────────────────────────────────── */
+    .booking-split { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: start; }
+    .booking-info h2 { color: var(--cream); margin-bottom: 1rem; }
+    .booking-info p { color: var(--sand); margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .booking-policy {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(184,150,90,0.2);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .booking-policy h4 { color: var(--gold); font-size: 1rem; margin-bottom: 0.75rem; }
+    .booking-policy li {
+      font-size: 0.82rem; color: var(--sand);
+      padding: 0.3rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .booking-policy li::before {
+      content: '–';
+      position: absolute; left: 0;
+      color: var(--gold);
+    }
+    .booking-form { background: var(--cream); padding: 2.5rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.4rem; font-weight: 500;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(139,106,79,0.25);
+      background: var(--white);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      color: var(--deep);
+      outline: none;
+      transition: border-color 0.3s;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { width: 100%; padding: 1rem; font-size: 0.8rem; letter-spacing: 0.15em; }
+
+    /* ── CONTACT ────────────────────────────────── */
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .contact-card {
+      padding: 2rem;
+      border: 1px solid rgba(139,106,79,0.15);
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .contact-card:hover {
+      border-color: var(--gold);
+      background: rgba(184,150,90,0.04);
+    }
+    .contact-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .contact-card h4 {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .contact-card p, .contact-card a {
+      font-size: 0.88rem; color: var(--muted);
+    }
+    .contact-card a:hover { color: var(--gold); }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: #1e150f;
+      color: var(--sand);
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-inner {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(184,150,90,0.15);
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; color: var(--cream); margin-bottom: 0.75rem;
+    }
+    .footer-brand h3 span { color: var(--gold); }
+    .footer-brand p { font-size: 0.83rem; max-width: 300px; }
+    .footer-col h5 {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { font-size: 0.83rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.75rem; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .footer-disclaimer { font-size: 0.72rem; color: rgba(201,180,154,0.5); max-width: 600px; margin-top: 1rem; line-height: 1.6; }
+
+    /* ── ANIMATIONS ─────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; } 50% { opacity: 1; }
+    }
+    @keyframes lineGrow {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 900px) {
+      .grid-2, .booking-split { grid-template-columns: 1fr; gap: 2.5rem; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .faq-cols { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .pricing-extras { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .about-img-wrap { padding-bottom: 3rem; padding-right: 3rem; }
+    }
+    @media (max-width: 640px) {
+      .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: block; background: none; border: none; cursor: pointer; }
+      .hero-badge { display: none; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .pillars { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════ -->
+<nav id="mainNav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Serenity<span>Touch</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#booking" class="btn nav-cta">Book Now</a>
+      <button class="hamburger" aria-label="Menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag">
+        Relax <span>•</span> Restore <span>•</span> Rejuvenate
+      </div>
+      <h1>Heal Your Body.<br><em>Restore Your Mind.</em></h1>
+      <p>Experience the transformative power of therapeutic touch. Our certified massage therapists bring professional wellness care directly to you — easing tension, reducing pain, and restoring your body's natural balance.</p>
+      <div class="hero-btns">
+        <a href="#booking" class="btn btn-primary">Book Your Session</a>
+        <a href="#services" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5);color:rgba(255,255,255,0.85);">Explore Services</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <strong>8+</strong>Years of<br>Expertise
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STATS BAR
+═══════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-num">2,400+</span>
+        <span class="stat-label">Sessions Delivered</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">8</span>
+        <span class="stat-label">Therapy Modalities</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">98%</span>
+        <span class="stat-label">Client Satisfaction</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Certified & Licensed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════════════ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="grid-2">
+      <div class="about-visual reveal">
+        <div class="about-img-wrap">
+          <div class="about-leaf"></div>
+          <img
+            src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=700&auto=format&fit=crop&q=80"
+            alt="Professional massage therapist" class="about-img-main"
+          />
+          <img
+            src="about-accent.jpg"
+            alt="Calming therapy environment" class="about-img-accent"
+          />
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <span class="eyebrow">About Us</span>
+        <h2>Where Skill Meets Genuine Care</h2>
+        <div class="divider divider--left"></div>
+        <p>At Serenity Touch, we believe that true wellness begins with intentional, skilled therapeutic touch. Our licensed therapist brings over eight years of professional experience across multiple modalities — delivering deeply effective, personalized sessions in a safe and respectful environment.</p>
+        <p>Whether you're managing chronic pain, recovering from physical exertion, navigating daily stress, or simply seeking a restorative break, every session is thoughtfully tailored to your individual needs and health goals.</p>
+        <p>Your comfort, privacy, and wellbeing are our absolute priority. Every session is conducted with the highest standards of professional ethics, hygiene, and confidentiality.</p>
+        <div class="pillars">
+          <div class="pillar">
+            <h4>🏅 Fully Licensed</h4>
+            <p>Certified in multiple therapeutic modalities with ongoing professional development.</p>
+          </div>
+          <div class="pillar">
+            <h4>🔒 Private & Confidential</h4>
+            <p>Your sessions and health information are held in complete confidence.</p>
+          </div>
+          <div class="pillar">
+            <h4>🌿 Holistic Approach</h4>
+            <p>We treat the whole person — body, muscle, and nervous system together.</p>
+          </div>
+          <div class="pillar">
+            <h4>🚗 Mobile Service</h4>
+            <p>We come to your home, hotel, or office for maximum convenience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════════ -->
+<section class="section section--dark" id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="eyebrow">Our Services</span>
+      <h2 style="color:var(--cream)">Therapies Designed to Heal</h2>
+      <div class="divider"></div>
+      <p style="color:var(--sand)">Each modality is expertly applied to address your unique therapeutic needs — from stress relief and pain management to athletic recovery and deep relaxation.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <span class="service-icon">🌸</span>
+        <h3 style="color:var(--cream)">Swedish Relaxation Massage</h3>
+        <p>Gentle, flowing strokes work in harmony with your body's natural rhythms to melt away tension and calm the nervous system. Ideal for first-time clients and those seeking full-body relaxation.</p>
+        <div class="service-benefits">
+          <span class="benefit-tag">Stress Relief</span>
+          <span class="benefit-tag">Circulation</span>
+          <span class="benefit-tag">Relaxation</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">💪</span>
+        <h3 style="color:var(--cream)">Deep Tissue Therapy</h3>
+        <p>Firm, targeted pressure reaches beneath the surface to release chronic muscle tension, break down adhesions, and restore mobility in overworked or injured tissues.</p>
+        <div class="service-benefits">
+          <span class="benefit-tag">Pain Relief</span>
+          <span class="benefit-tag">Mobility</span>
+          <span class="benefit-tag">Posture</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🏃</span>
+        <h3 style="color:var(--cream)">Sports Recovery Massage</h3>
+        <p>Specifically designed for active individuals and athletes. Accelerates muscle recovery, reduces inflammation, enhances flexibility, and prepares the body for peak physical performance.</p>
+        <div class="service-benefits">
+          <span class="benefit-tag">Recovery</span>
+          <span class="benefit-tag">Performance</span>
+          <span class="benefit-tag">Flexibility</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🫙</span>
+        <h3 style="color:var(--cream)">Cupping Therapy</h3>
+        <p>Traditional suction cupping creates negative pressure to lift fascia, improve circulation, release deep muscular tension, and support lymphatic drainage throughout the body.</p>
+        <div class="service-benefits">
+          <span class="benefit-tag">Detox</span>
+          <span class="benefit-tag">Fascia Release</span>
+          <span class="benefit-tag">Circulation</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🦶</span>
+        <h3 style="color:var(--cream)">Reflexology</h3>
+        <p>Precise pressure applied to reflex points on the feet, hands, and ears stimulates corresponding organs and systems throughout the body, promoting deep internal balance and wellbeing.</p>
+        <div class="service-benefits">
+          <span class="benefit-tag">Balance</span>
+          <span class="benefit-tag">Organ Health</span>
+          <span class="benefit-tag">Relaxation</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🪨</span>
+        <h3 style="color:var(--cream)">Hot Stone Massage</h3>
+        <p>Smooth, heated basalt stones are placed and glided across the body to penetrate deep muscle layers with warmth, relieving tension, improving circulation, and inducing profound relaxation.</p>
+        <div class="service-benefits">
+          <span class="benefit-tag">Deep Warmth</span>
+          <span class="benefit-tag">Tension Relief</span>
+          <span class="benefit-tag">Calm</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">✨</span>
+        <h3 style="color:var(--cream)">Customized Therapy</h3>
+        <p>A bespoke session combining the techniques most appropriate for your body and goals. After a thorough consultation, we design a treatment plan uniquely for you — no two sessions are alike.</p>
+        <div class="service-benefits">
+          <span class="benefit-tag">Personalized</span>
+          <span class="benefit-tag">Multi-modal</span>
+          <span class="benefit-tag">Targeted</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🌊</span>
+        <h3 style="color:var(--cream)">Body-to-Body Relaxation Therapy</h3>
+        <p>A holistic full-body therapeutic experience incorporating close therapeutic contact techniques to release deep somatic tension, calm the nervous system, and promote a profound sense of physical ease and restoration. Available where legally permitted, conducted with full professionalism and client consent.</p>
+        <div class="service-benefits">
+          <span class="benefit-tag">Somatic Release</span>
+          <span class="benefit-tag">Full Body</span>
+          <span class="benefit-tag">Therapeutic</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRICING
+═══════════════════════════════════════════════ -->
+<section class="section section--warm" id="pricing">
+  <div class="container">
+    <div class="pricing-header reveal">
+      <span class="eyebrow">Investment in Your Wellness</span>
+      <h2>Session Pricing</h2>
+      <div class="divider"></div>
+      <p style="color:var(--muted)">All sessions begin with a complimentary consultation to ensure the most beneficial treatment for your needs. Prices listed are starting rates — exact pricing may vary by service type.</p>
+    </div>
+    <div class="pricing-cards reveal">
+      <div class="price-card">
+        <div class="price-duration">30 Minutes</div>
+        <div class="price-amount">$45</div>
+        <div class="price-from">Starting from</div>
+        <div class="price-note" style="margin-top:1rem;font-size:0.8rem;">Perfect for targeted focus areas or a quick refresh.</div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-duration">60 Minutes</div>
+        <div class="price-amount" style="color:var(--gold)">$80</div>
+        <div class="price-from">Starting from</div>
+        <div class="price-note" style="margin-top:1rem;font-size:0.8rem;color:var(--sand)">Our most popular session. Full-body treatment with time to breathe.</div>
+      </div>
+      <div class="price-card">
+        <div class="price-duration">90 Minutes</div>
+        <div class="price-amount">$115</div>
+        <div class="price-from">Starting from</div>
+        <div class="price-note" style="margin-top:1rem;font-size:0.8rem;">Deeper therapeutic work with ample relaxation time.</div>
+      </div>
+      <div class="price-card">
+        <div class="price-duration">120 Minutes</div>
+        <div class="price-amount">$150</div>
+        <div class="price-from">Starting from</div>
+        <div class="price-note" style="margin-top:1rem;font-size:0.8rem;">The ultimate wellness experience. Full treatment + recovery.</div>
+      </div>
+    </div>
+    <div class="pricing-extras reveal">
+      <div class="extra">
+        <div class="extra-icon">🚗</div>
+        <div>
+          <h4>Mobile Service Fee</h4>
+          <p>$20–$50 added to session rate depending on travel distance. We bring everything needed directly to your location.</p>
+        </div>
+      </div>
+      <div class="extra">
+        <div class="extra-icon">💳</div>
+        <div>
+          <h4>Booking Fee: $50</h4>
+          <p>A $50 booking fee is charged at the time of scheduling to reserve your appointment. This amount is fully applied toward your session total.</p>
+        </div>
+      </div>
+      <div class="extra">
+        <div class="extra-icon">🎁</div>
+        <div>
+          <h4>Package Deals</h4>
+          <p>Ask about discounted session packages when booking multiple appointments. Loyalty clients receive priority scheduling and exclusive offers.</p>
+        </div>
+      </div>
+      <div class="extra">
+        <div class="extra-icon">💰</div>
+        <div>
+          <h4>Payment Methods</h4>
+          <p>We accept cash, card, bank transfer, and popular mobile payment platforms. Payment is due at the time of service.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CREDENTIALS / TRUST
+═══════════════════════════════════════════════ -->
+<section class="section" id="credentials">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem" class="reveal">
+      <span class="eyebrow">Why You Can Trust Us</span>
+      <h2>Professional Standards, Always</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="trust-grid reveal">
+      <div class="trust-item">
+        <div class="trust-icon-wrap">🏆</div>
+        <h4>Licensed Therapist</h4>
+        <p>Fully certified and licensed by the relevant professional massage therapy bodies with ongoing continuing education.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrap">📋</div>
+        <h4>Multi-Modality Certified</h4>
+        <p>Formally trained and certified in 8+ therapeutic modalities, ensuring expert care for diverse client needs.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrap">🛡️</div>
+        <h4>Client Confidentiality</h4>
+        <p>All client health information and session details are held in strict confidence, in compliance with professional ethical codes.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrap">✅</div>
+        <h4>Hygiene & Safety First</h4>
+        <p>Fresh linens, sanitized equipment, and thorough protocols for every session. Your health and safety are non-negotiable.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrap">❤️</div>
+        <h4>Client-Centered Care</h4>
+        <p>Every session begins with a wellness consultation to understand your goals, health history, and any areas of concern.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrap">⭐</div>
+        <h4>8+ Years Experience</h4>
+        <p>With over 2,400 sessions delivered, our therapist brings deep practical expertise and refined technique to every appointment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     WHY CHOOSE US
+═══════════════════════════════════════════════ -->
+<section class="section section--dark" id="why">
+  <div class="container">
+    <div class="grid-2">
+      <div class="why-visual reveal">
+        <img
+          src="https://images.unsplash.com/photo-1527515637462-cff94abb904f?w=700&auto=format&fit=crop&q=80"
+          alt="Serene massage environment" class="why-img"
+        />
+        <div class="why-overlay"></div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">The Serenity Touch Difference</span>
+        <h2 style="color:var(--cream);margin-bottom:2rem">Why Clients Choose Us</h2>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-num">01</div>
+            <div>
+              <h4>Genuinely Personalized Treatment</h4>
+              <p>No two bodies are the same. We listen carefully and adapt every technique to suit your unique physiology and wellness goals.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">02</div>
+            <div>
+              <h4>Clean, Calming Environment</h4>
+              <p>Whether in our studio or your space, we create a pristine, peaceful atmosphere that enhances the therapeutic experience.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">03</div>
+            <div>
+              <h4>Convenient Mobile Service</h4>
+              <p>We bring professional-grade therapy to your home, hotel, or corporate wellness event — no travel needed on your part.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">04</div>
+            <div>
+              <h4>Complete Discretion & Respect</h4>
+              <p>All clients are treated with the utmost professionalism, dignity, and respect throughout every interaction and session.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">05</div>
+            <div>
+              <h4>Results-Focused Approach</h4>
+              <p>We measure success by how you feel afterward — improved mobility, reduced pain, and genuine relaxation, every time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════════ -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <span class="eyebrow">Client Stories</span>
+      <h2>What Our Clients Say</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="testimonials-grid reveal">
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I came in with months of neck and shoulder tension from desk work. After just one 90-minute deep tissue session, I felt like a completely different person. The therapist was attentive, professional, and incredibly skilled. I've already booked my next appointment."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div>
+            <div class="author-name">Michael A.</div>
+            <div class="author-detail">Software Engineer · Regular Client</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The mobile service is a game-changer. Having a therapist arrive at my home with a fully equipped setup was seamless and incredibly relaxing. The hot stone session was deeply therapeutic. I've recommended Serenity Touch to everyone in my office."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <div class="author-name">Sarah O.</div>
+            <div class="author-detail">Marketing Manager · Mobile Client</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"As a runner training for marathons, sports recovery massage has become essential to my routine. The knowledge of muscle anatomy and recovery technique here is exceptional. My performance has noticeably improved since I started booking monthly sessions."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">D</div>
+          <div>
+            <div class="author-name">David T.</div>
+            <div class="author-detail">Amateur Athlete · Monthly Client</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I was nervous about my first reflexology session, but the therapist made me feel completely at ease from the moment we started. The consultation beforehand was thorough and reassuring. By the end I was genuinely so relaxed I almost fell asleep. Wonderful experience."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Amaka B.</div>
+            <div class="author-detail">Nurse · First-Time Client</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The cupping therapy was incredible for my lower back pain that had been bothering me for weeks. The therapist explained every step, was completely professional, and the results spoke for themselves. I was skeptical but now I'm a complete convert."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div>
+            <div class="author-name">Rachel N.</div>
+            <div class="author-detail">Teacher · Returning Client</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════ -->
+<section class="section section--warm" id="faq">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem" class="reveal">
+      <span class="eyebrow">Frequently Asked Questions</span>
+      <h2>Everything You Need to Know</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="faq-cols reveal">
+      <div class="faq-item">
+        <h4>How long is each session?</h4>
+        <p>Sessions are available in 30, 60, 90, or 120-minute durations. We recommend at least 60 minutes for a comprehensive full-body treatment. Shorter sessions are ideal for targeted work on specific areas. Each session includes a brief pre-treatment consultation at no extra charge.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How does the mobile service work?</h4>
+        <p>We travel to your home, hotel room, Airbnb, or workplace within our service area. Simply book your session, confirm your address, and we arrive fully equipped with a professional massage table, fresh linens, oils, and everything needed. A mobile service fee of $20–$50 applies based on distance.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What is the $20 booking fee?</h4>
+        <p>A non-refundable $20 booking fee is required at the time of scheduling to secure your appointment slot. This fee is deducted from your total session cost — it's not an extra charge. It simply ensures commitment on both sides and protects against last-minute cancellations.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What is the cancellation policy?</h4>
+        <p>We request at least 24 hours' notice for cancellations or rescheduling. Cancellations with less than 24 hours' notice will forfeit the booking fee. In exceptional circumstances, we are always happy to work with you on rescheduling. We value your time and ask that you value ours equally.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What should I wear / bring?</h4>
+        <p>You will be professionally draped with fresh linens throughout the session, with only the area being worked on exposed. Clients typically undress to their comfort level. Please arrive clean, well-hydrated, and avoid eating a heavy meal immediately before your session.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Are there any health conditions I should disclose?</h4>
+        <p>Yes — it is important to inform your therapist of any medical conditions, recent injuries, surgeries, medications, or areas of sensitivity before your session. This information is strictly confidential and allows us to tailor the treatment safely and effectively to your needs.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How often should I book sessions?</h4>
+        <p>For general wellness and stress management, once or twice a month is ideal. Those managing chronic pain, athletic training, or rehabilitation may benefit from weekly sessions. Your therapist will provide a personalized recommendation after your first consultation.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do you offer gift certificates?</h4>
+        <p>Yes! Gift certificates are available for any session type or monetary value — a perfect wellness gift for a loved one. Contact us to arrange a digital or physical gift certificate. They never expire and can be used for any service we offer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     BOOKING
+═══════════════════════════════════════════════ -->
+<section class="section section--dark" id="booking">
+  <div class="container">
+    <div class="booking-split">
+      <div class="booking-info reveal">
+        <span class="eyebrow">Schedule Your Session</span>
+        <h2>Book Your Appointment</h2>
+        <div class="divider divider--left" style="background:var(--gold)"></div>
+        <p>Ready to invest in your wellbeing? Complete the booking form and we'll confirm your appointment within 2 hours during business hours. All bookings require a $20 deposit to reserve your slot.</p>
+        <div class="booking-policy">
+          <h4>📋 Booking Policy</h4>
+          <ul>
+            <li>$50 booking fee required at time of scheduling</li>
+            <li>Fee is applied toward your session total</li>
+            <li>24-hour cancellation notice required</li>
+            <li>Late cancellations forfeit booking fee</li>
+            <li>Rescheduling available with 12+ hours notice</li>
+            <li>Mobile sessions confirmed upon address verification</li>
+            <li>Health intake form sent upon booking confirmation</li>
+          </ul>
+        </div>
+        <div style="margin-top:1.5rem">
+          <p style="font-size:0.85rem;color:var(--sand);margin-bottom:0.5rem">📞 Prefer to call?</p>
+          <a href="tel:+15551234567" style="color:var(--gold);font-size:1.1rem;font-family:'Cormorant Garamond',serif;">+1 (555) 123-4567</a>
+          <p style="font-size:0.85rem;color:var(--sand);margin:0.75rem 0 0.5rem">💬 WhatsApp us:</p>
+          <a href="https://wa.me/15551234567" style="color:var(--gold);font-size:1.1rem;font-family:'Cormorant Garamond',serif;">+1 (555) 123-4567</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="booking-form">
+  <h3 style="margin-bottom:1.75rem;font-size:1.5rem">Request an Appointment</h3>
+
+  <form id="bookingForm" action="https://formspree.io/f/xbdereqo" method="POST">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fname">Full Name *</label>
+        <input type="text" id="fname" name="Full Name" placeholder="Your full name" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="Phone Number" placeholder="+1 (555) 000-0000" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required />
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="date">Preferred Date *</label>
+        <input type="date" id="date" name="Preferred Date" required />
+      </div>
+      <div class="form-group">
+        <label for="time">Preferred Time *</label>
+        <input type="time" id="time" name="Preferred Time" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="service">Service Type *</label>
+      <select id="service" name="Service Type" required>
+        <option value="">Select a service...</option>
+        <option>Swedish Relaxation Massage</option>
+        <option>Deep Tissue Therapy</option>
+        <option>Sports Recovery Massage</option>
+        <option>Cupping Therapy</option>
+        <option>Reflexology</option>
+        <option>Hot Stone Massage</option>
+        <option>Customized Therapy</option>
+        <option>Body-to-Body Relaxation Therapy</option>
+        <option>Not Sure – Please Advise</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="duration">Session Duration</label>
+        <select id="duration" name="Session Duration">
+          <option>30 Minutes</option>
+          <option selected>60 Minutes</option>
+          <option>90 Minutes</option>
+          <option>120 Minutes</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="location-type">Session Location</label>
+        <select id="location-type" name="Session Location">
+          <option>Studio Visit</option>
+          <option>Mobile – My Home</option>
+          <option>Mobile – Hotel</option>
+          <option>Mobile – Office/Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="address">Address (if Mobile Service)</label>
+      <input type="text" id="address" name="Address" placeholder="Street address, city, zip code" />
+    </div>
+    <div class="form-group">
+      <label for="notes">Health Notes / Special Requests</label>
+      <textarea id="notes" name="Health Notes"></textarea>
+    </div>
+
+    <input type="hidden" id="nextUrl" name="_next" value="thank-you.html" />
+    <input type="hidden" name="_subject" value="New Appointment Request!" />
+
+    <button type="submit" class="btn btn-primary form-submit">
+      Request Appointment & Pay Booking Fee →
+    </button>
+    <p style="font-size:0.72rem;color:var(--muted);margin-top:0.75rem;text-align:center;">
+      We'll confirm your appointment within 2 business hours. A $50 booking deposit secures your slot.
+    </p>
+  </form>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════════ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem" class="reveal">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Contact & Hours</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-card">
+        <div class="contact-card-icon">📞</div>
+        <h4>Phone</h4>
+        <p><a href="tel:+15551234567">+1 (555) 123-4567</a></p>
+        <p style="margin-top:0.25rem;font-size:0.78rem;">Available during business hours</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">💬</div>
+        <h4>WhatsApp</h4>
+        <p><a href="https://wa.me/15551234567">+1 (555) 123-4567</a></p>
+        <p style="margin-top:0.25rem;font-size:0.78rem;">Fastest response method</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <h4>Email</h4>
+        <p><a href="mailto:hello@serenitytouch.com">hello@serenitytouch.com</a></p>
+        <p style="margin-top:0.25rem;font-size:0.78rem;">Response within 24 hours</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">📍</div>
+        <h4>Service Area</h4>
+        <p>Metropolitan & surrounding suburbs</p>
+        <p style="margin-top:0.25rem;font-size:0.78rem;">Mobile service within 25 miles</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">🕐</div>
+        <h4>Business Hours</h4>
+        <p>Mon – Fri: 9:00 AM – 8:00 PM</p>
+        <p>Sat – Sun: 10:00 AM – 6:00 PM</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">📅</div>
+        <h4>Appointments</h4>
+        <p>By appointment only</p>
+        <p style="margin-top:0.25rem;font-size:0.78rem;">Same-day available when possible</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem" class="reveal">
+      <a href="#booking" class="btn btn-primary">Book Your Session Today</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Serenity<span>Touch</span></h3>
+        <p>Professional massage therapy and wellness services delivered with skill, care, and the highest ethical standards. Your healing journey begins here.</p>
+        <div style="display:flex;gap:1rem;margin-top:1.5rem">
+          <a href="#" style="color:var(--sand);font-size:1.2rem;" aria-label="Instagram">📸</a>
+          <a href="#" style="color:var(--sand);font-size:1.2rem;" aria-label="Facebook">📘</a>
+          <a href="https://wa.me/15551234567" style="color:var(--sand);font-size:1.2rem;" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Swedish Massage</a></li>
+          <li><a href="#services">Deep Tissue</a></li>
+          <li><a href="#services">Sports Recovery</a></li>
+          <li><a href="#services">Cupping Therapy</a></li>
+          <li><a href="#services">Reflexology</a></li>
+          <li><a href="#services">Hot Stone</a></li>
+          <li><a href="#services">Customized Therapy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#booking">Book a Session</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Gift Certificates</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>©️ 2025 Serenity Touch Massage & Wellness. All rights reserved.</span>
+      <span style="color:rgba(201,180,154,0.4)">Privacy Policy · Terms of Service</span>
+    </div>
+    <p class="footer-disclaimer">All services are provided for legitimate therapeutic and wellness purposes only. Serenity Touch is a professional massage therapy practice. All therapists are licensed and adhere to the highest standards of professional ethics, client confidentiality, and scope of practice. Services comply with all applicable local laws and regulations.</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════ -->
+<script>
+  // Sticky nav
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Update thank-you redirect with selected service and date
+  const bookingForm = document.getElementById('bookingForm');
+  const nextInput = document.getElementById('nextUrl');
+  bookingForm.addEventListener('submit', () => {
+    const service = document.getElementById('service').value;
+    const date = document.getElementById('date').value;
+    const params = new URLSearchParams();
+    if (service) params.set('service', service);
+    if (date) params.set('date', date);
+    const query = params.toString();
+    nextInput.value = query ? `thank-you.html?${query}` : 'thank-you.html';
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
+

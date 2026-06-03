@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You | Serenity Touch</title>
+  <meta name="description" content="Thank you for booking with Serenity Touch. Your appointment request has been received." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #F7F3EE;
+      --deep: #3B2C22;
+      --gold: #B8965A;
+      --text: #3B2C22;
+      --muted: #7A6E66;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+      line-height: 1.75;
+    }
+    .page-wrap { max-width: 680px; width: 100%; }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 1rem;
+    }
+    p { margin-bottom: 1.5rem; color: var(--muted); }
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--gold);
+      color: white;
+      border: none;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .btn:hover { background: #8C6A4F; }
+    .note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <h1>Thank You!</h1>
+    <p id="customMessage">Your appointment request has been received. We will contact you within 2 business hours to confirm your booking and finalize your session details.</p>
+    <a href="index.html" class="btn">Back to Serenity Touch</a>
+    <p class="note">If you need immediate assistance, please call <a href="tel:+15551234567">+1 (555) 123-4567</a>.</p>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get('service');
+    const date = params.get('date');
+    const messageElement = document.getElementById('customMessage');
+    if (service || date) {
+      const serviceText = service ? `Service: ${service}` : '';
+      const dateText = date ? `Preferred date: ${new Date(date).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}` : '';
+      const parts = [serviceText, dateText].filter(Boolean);
+      messageElement.textContent = `Your appointment request has been received. ${parts.join(' — ')} We will contact you within 2 business hours to confirm your booking.`;
+    }
+  </script>
+</body>
+</html>
