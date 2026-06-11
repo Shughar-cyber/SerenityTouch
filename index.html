@@ -103,54 +103,70 @@
     }
     .divider--left { margin-left: 0; }
 
-    /* ── NAV ────────────────────────────────────── */
+    /* ── NAV ───────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 1.2rem 0;
-      transition: all 0.4s ease;
+      padding: 1rem 0;
+      transition: background 0.3s, padding 0.25s, box-shadow 0.25s;
+      pointer-events: auto;
     }
     nav.scrolled {
       background: rgba(247,243,238,0.96);
       backdrop-filter: blur(8px);
-      box-shadow: 0 2px 20px rgba(59,44,34,0.08);
-      padding: 0.8rem 0;
+      box-shadow: 0 6px 24px rgba(59,44,34,0.08);
+      padding: 0.6rem 0;
     }
     .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 400;
       color: var(--white);
-      transition: color 0.4s;
+      transition: color 0.25s, transform 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
     }
     nav.scrolled .nav-logo { color: var(--deep); }
     .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links li a {
       font-size: 0.75rem;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
-      transition: color 0.3s;
+      color: rgba(255,255,255,0.95);
+      transition: color 0.18s, background 0.18s;
+      padding: 0.45rem 0.25rem;
+      border-radius: 6px;
+      display: inline-block;
     }
-    nav.scrolled .nav-links a { color: var(--muted); }
-    .nav-links a:hover { color: var(--gold); }
+    nav.scrolled .nav-links li a { color: var(--muted); }
+    .nav-links li a:hover { color: var(--gold); background: rgba(255,255,255,0.06); }
     .nav-cta {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 0.6em 1.6em;
+      padding: 0.6em 1.4em;
       background: var(--gold);
       color: var(--white);
-      transition: all 0.3s;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(184,150,90,0.12);
+      transition: transform 0.18s, box-shadow 0.18s;
     }
-    .nav-cta:hover { background: var(--umber); }
-    .hamburger { display: none; }
+    .nav-cta:hover { transform: translateY(-2px); background: var(--umber); }
+    .hamburger {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.06); }
 
     /* ── HERO ───────────────────────────────────── */
     .hero {
@@ -602,20 +618,23 @@
       flex-direction: column;
       position: absolute;
       top: 100%;
-      right: 1.5rem;
+      right: 1rem;
       background: rgba(247,243,238,0.98);
-      border-radius: 1rem;
-      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      padding: 0.75rem;
       box-shadow: 0 18px 48px rgba(59,44,34,0.18);
-      width: min(260px, 90vw);
-      z-index: 10;
+      width: min(320px, 92vw);
+      z-index: 110;
+      gap: 0.25rem;
     }
-    .nav-links.open a {
-      padding: 0.75rem 0;
+    .nav-links.open li { margin: 0; }
+    .nav-links.open li a {
+      padding: 0.85rem 1rem;
       color: var(--deep);
-      font-weight: 600;
+      font-weight: 700;
+      border-radius: 8px;
+      display: block;
     }
-    .nav-links.open li + li { margin-top: 0.5rem; }
 
     /* ── ANIMATIONS ─────────────────────────────── */
     @keyframes fadeUp {
@@ -653,13 +672,13 @@
     @media (max-width: 640px) {
       .grid-3, .grid-4 { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      .hamburger { display: block; background: none; border: none; cursor: pointer; }
+      .hamburger { display: block; }
       .hero-badge { display: none; }
       .footer-inner { grid-template-columns: 1fr; }
       .pillars { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
-      .nav-inner { flex-wrap: wrap; gap: 0.75rem; }
-      .nav-cta { width: 100%; justify-content: center; }
+      .nav-inner { flex-wrap: nowrap; }
+      .nav-cta { min-width: 0; }
       .hero-btns { flex-direction: column; align-items: stretch; }
       .hero-btns .btn { width: 100%; }
       .hero p { font-size: 1rem; }
@@ -923,25 +942,25 @@
     <div class="pricing-cards reveal">
       <div class="price-card">
         <div class="price-duration">30 Minutes</div>
-        <div class="price-amount">$45</div>
+        <div class="price-amount">$100</div>
         <div class="price-from">Starting from</div>
         <div class="price-note" style="margin-top:1rem;font-size:0.8rem;">Perfect for targeted focus areas or a quick refresh.</div>
       </div>
       <div class="price-card featured">
         <div class="price-duration">60 Minutes</div>
-        <div class="price-amount" style="color:var(--gold)">$80</div>
+        <div class="price-amount" style="color:var(--gold)">$150</div>
         <div class="price-from">Starting from</div>
         <div class="price-note" style="margin-top:1rem;font-size:0.8rem;color:var(--sand)">Our most popular session. Full-body treatment with time to breathe.</div>
       </div>
       <div class="price-card">
         <div class="price-duration">90 Minutes</div>
-        <div class="price-amount">$115</div>
+        <div class="price-amount">$250</div>
         <div class="price-from">Starting from</div>
         <div class="price-note" style="margin-top:1rem;font-size:0.8rem;">Deeper therapeutic work with ample relaxation time.</div>
       </div>
       <div class="price-card">
         <div class="price-duration">120 Minutes</div>
-        <div class="price-amount">$150</div>
+        <div class="price-amount">$300</div>
         <div class="price-from">Starting from</div>
         <div class="price-note" style="margin-top:1rem;font-size:0.8rem;">The ultimate wellness experience. Full treatment + recovery.</div>
       </div>
@@ -1430,6 +1449,25 @@
 <!-- ═══════════════════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════════════════════ -->
+<!-- Thank-you modal (shown after AJAX submit) -->
+<div id="thankYouModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="thankYouTitle">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <h2 id="thankYouTitle">Thank you!</h2>
+    <p id="modalMessage">Your appointment request has been received. We'll contact you within 2 business hours.</p>
+    <a href="#" class="btn" id="modalPrimary">Back to site</a>
+  </div>
+</div>
+<style>
+  .modal { display: none; position: fixed; inset: 0; z-index: 1200; align-items: center; justify-content: center; }
+  .modal.open { display: flex; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+  .modal-content { position: relative; background: var(--cream); color: var(--text); padding: 2rem; max-width: 520px; width: 92%; border-radius: 8px; box-shadow: 0 18px 48px rgba(59,44,34,0.3); text-align: center; }
+  .modal-close { position: absolute; top: 10px; right: 10px; background: transparent; border: none; font-size: 1.1rem; cursor: pointer; }
+  #modalPrimary { margin-top: 1rem; display: inline-block; }
+</style>
+
 <script>
   // Sticky nav
   const nav = document.getElementById('mainNav');
@@ -1459,7 +1497,35 @@
   // Update thank-you redirect with selected service and date
   const bookingForm = document.getElementById('bookingForm');
   const nextInput = document.getElementById('nextUrl');
-  bookingForm.addEventListener('submit', () => {
+  const thankYouModal = document.getElementById('thankYouModal');
+  const modalMessage = document.getElementById('modalMessage');
+  const modalClose = document.getElementById('modalClose');
+  const modalPrimary = document.getElementById('modalPrimary');
+
+  function showModal(service, date) {
+    const parts = [];
+    if (service) parts.push(`Service: ${service}`);
+    if (date) {
+      try {
+        parts.push(`Preferred date: ${new Date(date).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}`);
+      } catch (e) { parts.push(`Preferred date: ${date}`); }
+    }
+    modalMessage.textContent = parts.length ? `Your appointment request has been received. ${parts.join(' — ')} We will contact you within 2 business hours to confirm your booking.` : 'Your appointment request has been received. We will contact you within 2 business hours to confirm your booking.';
+    thankYouModal.classList.add('open');
+    thankYouModal.setAttribute('aria-hidden', 'false');
+    modalPrimary.href = '#booking';
+  }
+
+  function hideModal() {
+    thankYouModal.classList.remove('open');
+    thankYouModal.setAttribute('aria-hidden', 'true');
+  }
+
+  modalClose.addEventListener('click', hideModal);
+  document.getElementById('modalBackdrop').addEventListener('click', hideModal);
+
+  bookingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
     const service = document.getElementById('service').value;
     const date = document.getElementById('date').value;
     const params = new URLSearchParams();
@@ -1467,6 +1533,24 @@
     if (date) params.set('date', date);
     const query = params.toString();
     nextInput.value = query ? `thank-you.html?${query}` : 'thank-you.html';
+
+    // Submit via AJAX to keep user on the page and show modal on success
+    const formData = new FormData(bookingForm);
+    fetch(bookingForm.action, {
+      method: bookingForm.method || 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        showModal(service, date);
+        bookingForm.reset();
+      } else {
+        return response.json().then(data => { throw new Error(data.error || 'Submission failed'); });
+      }
+    }).catch(err => {
+      console.error('Form submission error:', err);
+      alert('We could not submit the form. Please try again or contact us directly.');
+    });
   });
 
   // Smooth scroll for anchor links
