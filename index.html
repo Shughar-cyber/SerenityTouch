@@ -1328,6 +1328,7 @@
       <textarea id="notes" name="Health Notes"></textarea>
     </div>
 
+    <input type="hidden" id="bookingId" name="Booking ID" value="" />
     <input type="hidden" id="nextUrl" name="_next" value="thank-you.html" />
     <input type="hidden" name="_subject" value="New Appointment Request!" />
 
@@ -1496,21 +1497,30 @@
 
   // Update thank-you redirect with selected service and date
   const bookingForm = document.getElementById('bookingForm');
+  const bookingIdInput = document.getElementById('bookingId');
   const nextInput = document.getElementById('nextUrl');
   const thankYouModal = document.getElementById('thankYouModal');
   const modalMessage = document.getElementById('modalMessage');
   const modalClose = document.getElementById('modalClose');
   const modalPrimary = document.getElementById('modalPrimary');
 
-  function showModal(service, date) {
+  function generateBookingId() {
+    const datePart = new Date().toISOString().slice(2, 10).replace(/-/g, '');
+    const suffix = Math.random().toString(36).slice(2, 8).toUpperCase();
+    return `BOOK-${datePart}-${suffix}`;
+  }
+
+  function showModal(service, date, bookingId) {
     const parts = [];
+    if (bookingId) parts.push(`Booking ID: ${bookingId}`);
     if (service) parts.push(`Service: ${service}`);
     if (date) {
       try {
         parts.push(`Preferred date: ${new Date(date).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}`);
       } catch (e) { parts.push(`Preferred date: ${date}`); }
     }
-    modalMessage.textContent = parts.length ? `Your appointment request has been received. ${parts.join(' — ')} We will contact you within 2 business hours to confirm your booking.` : 'Your appointment request has been received. We will contact you within 2 business hours to confirm your booking.';
+    const baseText = 'Your appointment request has been received.';
+    modalMessage.textContent = parts.length ? `${baseText} ${parts.join(' — ')}. We will contact you within 2 business hours to confirm your booking.` : `${baseText} We will contact you within 2 business hours to confirm your booking.`;
     thankYouModal.classList.add('open');
     thankYouModal.setAttribute('aria-hidden', 'false');
     modalPrimary.href = '#booking';
@@ -1526,9 +1536,14 @@
 
   bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    const bookingId = generateBookingId();
+    bookingIdInput.value = bookingId;
+
     const service = document.getElementById('service').value;
     const date = document.getElementById('date').value;
     const params = new URLSearchParams();
+    if (bookingId) params.set('bookingId', bookingId);
     if (service) params.set('service', service);
     if (date) params.set('date', date);
     const query = params.toString();
@@ -1542,7 +1557,7 @@
       headers: { 'Accept': 'application/json' }
     }).then(response => {
       if (response.ok) {
-        showModal(service, date);
+        showModal(service, date, bookingId);
         bookingForm.reset();
       } else {
         return response.json().then(data => { throw new Error(data.error || 'Submission failed'); });

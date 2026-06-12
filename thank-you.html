@@ -48,6 +48,20 @@
       transition: background 0.3s ease;
     }
     .btn:hover { background: #8C6A4F; }
+    .booking-id-box {
+      display: inline-block;
+      margin: 0 auto 1.5rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(184, 150, 90, 0.35);
+      border-radius: 999px;
+      background: rgba(184, 150, 90, 0.12);
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+    .booking-id-box strong { color: #8C6A4F; }
     .note {
       font-size: 0.9rem;
       color: var(--muted);
@@ -66,15 +80,25 @@
 <body>
   <div class="page-wrap">
     <h1>Thank You!</h1>
+    <div id="bookingIdBox" class="booking-id-box" style="display:none;">Booking ID: <strong id="bookingIdValue">—</strong></div>
     <p id="customMessage">Your appointment request has been received. We will contact you within 2 business hours to confirm your booking and finalize your session details.</p>
     <a href="index.html" class="btn">Back to Serenity Touch</a>
     <p class="note">If you need immediate assistance, please call <a href="tel:+15551234567">+1 (555) 123-4567</a>.</p>
   </div>
   <script>
     const params = new URLSearchParams(window.location.search);
+    const bookingId = params.get('bookingId');
     const service = params.get('service');
     const date = params.get('date');
     const messageElement = document.getElementById('customMessage');
+    const bookingIdBox = document.getElementById('bookingIdBox');
+    const bookingIdValue = document.getElementById('bookingIdValue');
+
+    if (bookingId) {
+      bookingIdValue.textContent = bookingId;
+      bookingIdBox.style.display = 'inline-block';
+    }
+
     if (service || date) {
       const serviceText = service ? `Service: ${service}` : '';
       const dateText = date ? `Preferred date: ${new Date(date).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}` : '';
